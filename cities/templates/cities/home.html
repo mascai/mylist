@@ -2,8 +2,12 @@
 <h1>HomePage</h1>
 
 <form action="{% url 'search_results' %}" method="get">
-  <input name="q" type="text" placeholder="Search...">
+    <input name="q" type="text" placeholder="Search...">
+    <button> Search </button>
 </form>
+
+
+
 
 <ul>
   {% for city in object_list %}
