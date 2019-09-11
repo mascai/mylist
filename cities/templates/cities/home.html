@@ -1,0 +1,31 @@
+<!-- templates/home.html -->
+<h1>HomePage</h1>
+
+<form action="{% url 'search_results' %}" method="get">
+  <input name="q" type="text" placeholder="Search...">
+</form>
+
+<ul>
+  {% for city in object_list %}
+    <li>
+      <h1><a href="{% url 'city_detail' pk=city.pk %}">{{ city.name }}</a></h1>
+    </li>
+  {% endfor %}
+</ul>
+
+
+{{page_obj}}
+
+<div class="pagination">
+    <span class="page-links">
+        {% if page_obj.has_previous %}
+            <a href="/?city={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+            <span class="page-current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+        {% if page_obj.has_next %}
+            <a href="/?city={{ page_obj.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
