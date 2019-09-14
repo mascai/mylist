@@ -25,11 +25,16 @@ class SearchResultsView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['query'] = self.request.GET.get('q')
+        # added param
+        context['query2'] = self.request.GET.get('q2')
+        #print("BBBBBBBBBBBBBBBBb {}".format(context['query2']))
         return context
 
     def get_queryset(self): # new
         query = self.request.GET.get('q')
+        query2 = self.request.GET.get('q2')
+        #print("AAAAAAAAAAAAAAAAAAAAA", query2, type(query2))
         object_list = City.objects.filter(
-            Q(name__icontains=query) | Q(state__icontains=query)
+            (Q(name__icontains=query) | Q(state__icontains=query)) & Q(category=query2)
         )
         return object_list
