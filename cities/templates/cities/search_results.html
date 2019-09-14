@@ -1,5 +1,16 @@
 <h1>Search Results</h1>
 
+<form action="{% url 'search_results' %}" method="get">
+    <input name="q" type="text" placeholder="Search...">
+    <select name="q2" class="form-control" id="exampleFormControlSelect1">
+        <option>All locations</option>
+        <option>RU</option>
+        <option>Ukraine</option>
+        <option>USA</option>
+    </select>
+    <button> Search </button>
+</form>
+
 <ul>
   {% for city in object_list %}
     <li>
